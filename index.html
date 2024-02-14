@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<title>Генератор кличок для тварин</title>
+</head>
+<body class="main__container">
+<div class="container">
+<div class="flex__container">
+<h1 class="title__change">Генератор імен для тварин</h1>
+<div class="content-animal">
+  <div class="animal-name" data-image id="animal-name"></div>
+  <img class="" id="animal-image" src="" alt="">
+  </div>
+  <div class="select-flex__mobile">
+<select class="select" id="animal-type">
+  <option class="option-change" value="Тип">Виберіть Тип</option>
+  <option class="option-change" data-image="img/catsmz.png" value="Кіт">Кіт</option>
+  <option class="option-change" data-image="img/dogmz.png" value="Собака">Собака</option>
+  <option class="option-change" data-image="img/birdmz.png" value="Птах">Птах</option>
+  <option class="option-change" data-image="img/rodentmz.png" value="Гризун">Гризун</option>
+  <option class="option-change" data-image="img/fishmz.png" value="Рибка">Рибка</option>
+  <option class="option-change" data-image="img/reptilemz.png" value="Рептилія">Рептилія</option>
+</select>
+<select class="select" id="gender">
+  <option class="option-change" data-image="" value="Стать">Виберіть Стать</option>
+  <option class="option-change" data-image="" value="чоловіча">Чоловіча</option>
+  <option class="option-change" data-image="" value="жіноча">Жіноча</option>
+</select>
+</div>
+<input class="input_change" id="name-length" pattern=".{1,}" placeholder="Довжина клички (необов'язково)">
+<div class="select-flex__mobile">
+<button class="button-change" onclick="generateAnimalName()">Згенерувати</button>
+<button class="button-change" onclick="clearAnimalName()">Очистити</button>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+  const catNamesBoy = ["Мурзик", "Барсик", "Леопольд" , "Чорний"];
+  const catNamesGirl = ["Буся", "Мурка", "Сімка", "Ася"]
+  const dogNamesBoy = ["Рекс", "Барон", "Майк", "Маркус", "Джек", "Макс"];
+  const dogNamesGirl =["Айя", "Віола", "Міледі", "Лола", "Мерсі"]
+  const birdNamesBoy =["Алекс", "Алмаз", "Абраша", "Альф", "Амур", "Арго", "Аристарх", "Аркаша", "Арчик", "Аякс"]
+  const birdNamesGirl =["Адель", "Аліса", "Афродіта", "Анжела", "Ассоль", "Ашіка", "Ася"]
+  const rodentNamesBoy =["Бублик","Рогалик","Батон","Булкін","Сушкін","Плюшкін","Пряник","Бріош","Пончик","Крекер"]
+  const rodentNamesGirl =["Бель","Венера", "Веста", "Кучерява Сью","Мара","Міранда", 
+  "Муза","Поночка","Рапунцель","Роза","Саманта","Софі","Церера","Шарлотт","Юнона"]
+  const fishNamesBoy =["Насос", "Альберт", 
+  "Білохвіст", "Варташа", "Оскар", "Мадагаскар",
+  "Златик", "Мунь", "Патрік", "Дрібний", "Адісон"]
+  const fishNamesGirl =["Ліна", "Алісія", "Малинка", "Іннеса", "Ліссі", "Неонарда", 
+  "Стрічка", "Алекса", "Неріта", "Прісцилла", "Модняшка", "Зейка", "Плавничок"]
+  const reptileNamesBoy =["Спайк","Мушу","Драко","Лео","Беззубий","Коротун","Пляма"]
+  const reptileNamesGirl =["Ліззі", "Біггі", "Єва", "Лейла", "Сова", "Твіла"]
+
+  function generateRandomIndex(max) {
+    return Math.floor(Math.random() * max);
+  }
+  function clearAnimalName() {
+    document.getElementById("animal-name").textContent = "";
+    document.getElementById("animal-image").src = "";
+    document.getElementById("animal-image").classList.remove("generate-image");
+  }
+  function generateAnimalName() {
+    const animalType = document.getElementById("animal-type").value;
+    const gender = document.getElementById("gender").value;
+    const nameLengthInput = document.getElementById("name-length");
+    const nameLength = nameLengthInput.value.trim() !== "" ? parseInt(nameLengthInput.value) : -1;
+
+    let names = []; // Ініціалізуємо змінну перед використанням
+
+    let imageUrl;
+    let name;
+    if (animalType === "Кіт") {
+        if (gender === "чоловіча") {
+            if (nameLength === -1) {
+                name = catNamesBoy[generateRandomIndex(catNamesBoy.length)];
+            } else {
+                names = catNamesBoy.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/catsmz.png";
+        } else if (gender === "жіноча") {
+            if (nameLength === -1) {
+                name = catNamesGirl[generateRandomIndex(catNamesGirl.length)];
+            } else {
+                names = catNamesGirl.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/catsmz.png";
+        }
+    } else if (animalType === "Собака") {
+        if (gender === "чоловіча") {
+            if (nameLength === -1) {
+                name = dogNamesBoy[generateRandomIndex(dogNamesBoy.length)];
+            } else {
+                names = dogNamesBoy.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/dogmz.png";
+        } else if (gender === "жіноча") {
+            if (nameLength === -1) {
+                name = dogNamesGirl[generateRandomIndex(dogNamesGirl.length)];
+            } else {
+                names = dogNamesGirl.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/dogmz.png";
+        }
+    }
+    else if (animalType === "Птах") {
+        if (gender === "чоловіча") {
+            if (nameLength === -1) {
+                name = birdNamesBoy[generateRandomIndex(birdNamesBoy.length)];
+            } else {
+                names = birdNamesBoy.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/birdmz.png";
+        } else if (gender === "жіноча") {
+            if (nameLength === -1) {
+                name = birdNamesGirl[generateRandomIndex(birdNamesGirl.length)];
+            } else {
+                names = birdNamesGirl.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/birdmz.png";
+        }
+      }
+      else if (animalType === "Гризун") {
+        if (gender === "чоловіча") {
+            if (nameLength === -1) {
+                name = rodentNamesBoy[generateRandomIndex(rodentNamesBoy.length)];
+            } else {
+                names = rodentNamesBoy.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/rodentmz.png";
+        } else if (gender === "жіноча") {
+            if (nameLength === -1) {
+                name = rodentNamesGirl[generateRandomIndex(rodentNamesGirl.length)];
+            } else {
+                names = rodentNamesGirl.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/rodentmz.png";
+        }
+      }
+      else if (animalType === "Рибка") {
+        if (gender === "чоловіча") {
+            if (nameLength === -1) {
+                name = fishNamesBoy[generateRandomIndex(fishNamesBoy.length)];
+            } else {
+                names = fishNamesBoy.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/fishmz.png";
+        } else if (gender === "жіноча") {
+            if (nameLength === -1) {
+                name = fishNamesGirl[generateRandomIndex(fishNamesGirl.length)];
+            } else {
+                names = fishNamesGirl.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/fishmz.png";
+        }
+      }
+      else if (animalType === "Рептилія") {
+        if (gender === "чоловіча") {
+            if (nameLength === -1) {
+                name = reptileNamesBoy[generateRandomIndex(reptileNamesBoy.length)];
+            } else {
+                names = reptileNamesBoy.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/reptilemz.png";
+        } else if (gender === "жіноча") {
+            if (nameLength === -1) {
+                name = reptileNamesGirl[generateRandomIndex(reptileNamesGirl.length)];
+            } else {
+                names = reptileNamesGirl.filter(name => name.length === nameLength);
+                if (names.length === 0) {
+                    alert("Немає імен такої довжини");
+                    return;
+                }
+                name = names[generateRandomIndex(names.length)];
+            }
+            imageUrl = "img/reptilemz.png";
+        }
+      }
+    if (animalType === "Тип") {
+        alert("Виберіть тип");
+        return;
+    }
+    if (gender === "Стать") {
+        alert("Виберіть стать");
+        return;
+    }
+
+    const animalName = `${name}`;
+    document.getElementById("animal-name").textContent = animalName;
+    // Встановлення шляху до зображення
+    document.getElementById("animal-image").src = imageUrl;
+    document.getElementById("animal-image").classList.add("generate-image");
+}
+</script>
+<script>
+  $(document).ready(function() {
+    $('#animal-type').select2({
+      templateResult: formatAnimal
+    });
+    $('#gender').select2();
+    function formatAnimal(option) {
+      if (!option.id) {
+        return option.text;
+      }
+
+      var imageUrl = $(option.element).data('image');
+      if (!imageUrl) {
+        return option.text;
+      }
+
+      var $animal = $(
+        '<span><img src="' + imageUrl + '" class="animal-image" /> ' + option.text + '</span>'
+      );
+      return $animal;
+    }
+  });
+</script>
+
+</div>
+</body>
+</html>
