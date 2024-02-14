@@ -1,0 +1,155 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+.title__change{
+    color: #ffffffed;
+    font-family: "Roboto";
+}
+.main__container{
+    display: flex;
+    justify-content: center;
+    background-color: #A2C617;
+}
+.container{
+    font-family: "Roboto";
+    width: 100%;
+    max-width: 600px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+.flex__container{
+    font-family: "Roboto";
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.select2-container .select2-dropdown {
+    background-color: #6528b4;
+}
+.select2-container--default .select2-selection--single {
+   background-color: #6528b4 !important;
+}
+.select2-selection__rendered{
+    color: #fff !important;
+}
+.select2-search__field{
+    display: none;
+}
+.animal-image{
+    width: 40px;
+    height: 40px;
+}
+.select2{
+    width: inherit !important;
+    font-size: 20px;
+
+}
+.select2-results__option span {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    column-gap: 5px;
+}
+  /* Стилізація обраного значення */
+  .select2-selection {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 10px;
+  }
+  
+  /* Стилізація випадаючого списку */
+  .select2-dropdown {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Стилізація варіантів вибору у списку */
+  .select2-results__option {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Стилізація виділеного варіанту */
+  .select2-results__option[aria-selected=true] {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+.input_change{
+    padding: 5px;
+    border-radius: 5px;
+}
+.input_change::placeholder {
+    color: #fff;
+    font-family: "Roboto";
+    font-size: 16px;
+    text-align: center;
+}
+.animal-name{
+    font-family: "Roboto";
+    font-size: 70px;
+    font-weight: 600;
+    color: #ffffff;
+}
+@media screen and (max-width: 475px) {
+    .animal-name {
+        font-size: 40px;
+    }
+}
+.button-change{
+    padding: 5px;
+    font-family: "Roboto";
+    font-size: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    background-color: #6528b4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.button-change:hover{
+    background-color: #6528b4dd;
+}
+.input_change{
+    background-color: #6528b4;
+    color: #ffffff;
+}
+.generate-image{
+    width: 100px;
+    height: 100px;
+}
+@media screen and (max-width: 475px) {
+    .generate-image {
+        width: 60px;
+        height: 60px;
+    }
+}
+.content-animal{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+}
+@media screen and (max-width: 475px) {
+    .content-animal {
+        height: 100px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .select2 .button-change {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    .input_change{
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 475px) {
+    .button-change{
+        font-size: 16px;
+    }
+}
